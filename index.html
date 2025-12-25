@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Flip Card</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #7f7fd5, #86a8e7, #91eae4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scene {
+    width: 100%;
+    max-width: 360px;
+    height: 520px;
+    perspective: 1200px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    cursor: pointer;
+}
+
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 24px;
+    backface-visibility: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    padding: 24px;
+}
+
+/* FRONT */
+.card-front {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h3 {
+    font-size: 18px;
+}
+
+.profile-pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(45deg,#f09433,#dc2743,#bc1888);
+    margin: 20px auto 10px;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid #fff;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.username {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.bio {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.stats strong {
+    display: block;
+    font-size: 16px;
+}
+
+.stats span {
+    font-size: 13px;
+    color: #777;
+}
+
+/* BACK */
+.card-back {
+    transform: rotateY(180deg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-back h2 {
+    margin-bottom: 10px;
+}
+
+.card-back p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.follow {
+    background: linear-gradient(45deg,#f09433,#dc2743);
+    color: #fff;
+}
+
+.back {
+    background: #eee;
+}
+
+@media(max-width: 400px) {
+    .scene {
+        height: 480px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+    <div class="card" id="flipCard">
+
+        <!-- FRONT -->
+        <div class="card-face card-front">
+            <div class="header">
+                <span>📷</span>
+                <h3>Instagram</h3>
+                <span>⋮</span>
+            </div>
+
+            <div class="profile-pic">
+                <img src="https://play-lh.googleusercontent.com/ZU9cSsyIJZo6Oy7HTHiEPwZg0m2Crep-d5ZrfajqtsH-qgUXSqKpNA2FpPDTn-7qA5Q=s512-rw" alt="profile">
+            </div>
+
+            <div class="name">Rokl ane Hlog</div>
+            <div class="username">@roklane</div>
+
+            <div class="bio">
+                UI Designer • Creator<br>
+                Tap card to flip ✨
+            </div>
+
+            <div class="stats">
+                <div><strong>128</strong><span>Posts</span></div>
+                <div><strong>4.2k</strong><span>Followers</span></div>
+                <div><strong>310</strong><span>Following</span></div>
+            </div>
+        </div>
+
+        <!-- BACK -->
+         
+        <div class="card-face card-back">
+        <div class="profile-pic">
+                <img src="https://play-lh.googleusercontent.com/ZU9cSsyIJZo6Oy7HTHiEPwZg0m2Crep-d5ZrfajqtsH-qgUXSqKpNA2FpPDTn-7qA5Q=s512-rw" alt="profile">
+            </div>
+
+           
+           
+            <h2>Connect with me</h2>
+            <p>Follow on Instagram for daily design inspiration & reels.</p>
+
+            <div class="buttons">
+                <button class="follow" onclick="openInstagram(event)">Open Instagram</button>
+                <button class="back" onclick="flipBack(event)">Back</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const card = document.getElementById("flipCard");
+
+card.addEventListener("click", () => {
+    card.classList.toggle("is-flipped");
+});
+
+function openInstagram(e) {
+    e.stopPropagation();
+    window.open("https://www.instagram.com/factsdrop_5/", "_blank");
+}
+
+function flipBack(e) {
+    e.stopPropagation();
+    card.classList.remove("is-flipped");
+}
+</script>
+
+</body>
+</html>
